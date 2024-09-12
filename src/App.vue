@@ -5,9 +5,9 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <!-- 一级路由出口 -->
   <RouterView/>
-  <div class="test">
+  <!-- <div class="test">
     test scss
-  </div>
+  </div> -->
   <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
