@@ -5,6 +5,9 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <!-- 一级路由出口 -->
   <RouterView/>
+  <div class="test">
+    test scss
+  </div>
   <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
@@ -22,8 +25,11 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView /> -->
 </template>
 
-<!-- <style scoped>
-/* header {
+<style scoped lang="scss">
+.test {
+  color: $priceColor;
+}
+header {
   line-height: 1.5;
   max-height: 100vh;
 }
@@ -83,7 +89,7 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-} */
-</style> -->
+}
+</style>
 
 
