@@ -8,9 +8,7 @@ defineProps({
 </script>
 
 <template>
-  我是首页
-  <!-- 二级路由出口 -->
-  <RouterView />
+  我是分类页
 </template>
 
 <style scoped>
