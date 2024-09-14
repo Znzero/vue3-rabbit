@@ -1,17 +1,9 @@
 <script setup>
-import { getCategoryAPI } from '@/api/layout'
-import { onMounted, ref } from 'vue'
-
-  const categoryList = ref([])
-  const getCategory = async () => {
-    const res = await getCategoryAPI()
-    categoryList.value = res.result
-  }
-
-  onMounted(() => getCategory())
 // vueUse
 import { useScroll } from '@vueuse/core'
+import {useCategoryStore} from '@/stores/category'
 const { y } = useScroll(window)
+const categoryStore = useCategoryStore()
 </script>
 
 <template>
@@ -20,7 +12,7 @@ const { y } = useScroll(window)
       <RouterLink class="logo" to="/" />
       <!-- 导航区域 -->
       <ul class="app-header-nav ">
-        <li class="home" v-for="item in categoryList" :key="item.id">
+        <li class="home" v-for="item in categoryStore.categoryList" :key="item.id">
          <RouterLink to="/">{{ item.name }}</RouterLink>
         </li>
       </ul>
