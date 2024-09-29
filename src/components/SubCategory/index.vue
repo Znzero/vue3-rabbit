@@ -1,7 +1,8 @@
 <script setup>
 import { getCategoryFilterAPI } from '@/api/category'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { getSubCategoryAPI } from '@/api/category';
 // 获取面包屑导航数据
 const filterData = ref({})
 const route = useRoute()
@@ -11,6 +12,44 @@ const getFilterData = async () => {
   console.log(res)
 }
 getFilterData()
+
+// 获取基础列表数据渲染
+const goodList = ref([])
+const reqData = ref({
+  categoryId: route.params.id,
+  page: 1,
+  pageSize: 20,
+  sortField: 'publishTime'
+})
+  
+const getGoodList = async () => {
+  const res = await getSubCategoryAPI(reqData.value)
+  console.log(res)
+  goodList.value = res.result.items
+}
+  
+onMounted(() => getGoodList())
+
+// tab切换回调
+const tabChange = () => {
+  console.log('tab切换了', reqData.value.sortField)
+  reqData.value.page = 1
+  getGoodList()
+}
+
+// 加载更多
+const disabled = ref(false)
+const load = async () => {
+  console.log('加载更多数据咯')
+  // 获取下一页的数据
+  reqData.value.page++
+  const res = await getSubCategoryAPI(reqData.value)
+  goodList.value = [...goodList.value, ...res.result.items]
+  // 加载完毕 停止监听
+  if (res.result.items.length === 0) {
+    disabled.value = true
+  }
+}
 </script>
 
 <template>
@@ -22,6 +61,17 @@ getFilterData()
       <el-breadcrumb-item>{{ filterData.name }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
+  <div class="sub-container">
+    <el-tabs v-model="reqData.sortField" @tab-change="tabChange">
+    <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
+    <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
+    <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
+  </el-tabs>
+  </div>
+  <div class="body">
+    <GoodsItem v-for="good in goodList" :goods="good" :key="good.id" />
+  </div>
+  
 </template>
 
 
@@ -38,8 +88,8 @@ getFilterData()
 
   .body {
     display: flex;
-    flex-wrap: wrap;
-    padding: 0 10px;
+    justify-content: space-around;
+    padding: 0 40px 30px;
   }
 
   .goods-item {
