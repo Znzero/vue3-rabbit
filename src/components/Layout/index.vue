@@ -6,6 +6,7 @@ import LayoutCeiling from './components/LayoutCeiling.vue';
 // 触发获取导航列表的action
 import { useCategoryStore} from '@/stores/category'
 import { onMounted } from 'vue';
+import router from '@/router';
 
 const categoryStore = useCategoryStore()
 onMounted(() => categoryStore.getCategory())
@@ -17,6 +18,7 @@ onMounted(() => categoryStore.getCategory())
   <LayoutNav />
   <LayoutCeiling />
   <LayoutHeader />
-  <RouterView />
+  <!-- 方案一：给router-view添加key值，给router-view组件绑定 -->
+  <RouterView :key="router.fullPath"/>
   <LayoutFooter />
 </template>
