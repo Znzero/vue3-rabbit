@@ -19,6 +19,7 @@ onMounted(() => categoryStore.getCategory())
   <LayoutCeiling />
   <LayoutHeader />
   <!-- 方案一：给router-view添加key值，给router-view组件绑定 -->
-  <RouterView :key="router.fullPath"/>
+  <!-- <RouterView :key="router.fullPath"/> -->
+   <RouterView />
   <LayoutFooter />
 </template>
