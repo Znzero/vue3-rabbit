@@ -66,11 +66,12 @@ const load = async () => {
     <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
     <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
     <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
-  </el-tabs>
+    </el-tabs>
+    <div class="body">
+        <GoodsItem v-for="good in goodList" :goods="good" :key="good.id" />
+    </div>
   </div>
-  <div class="body">
-    <GoodsItem v-for="good in goodList" :goods="good" :key="good.id" />
-  </div>
+ 
   
 </template>
 
@@ -90,44 +91,45 @@ const load = async () => {
     display: flex;
     justify-content: space-around;
     padding: 0 40px 30px;
+    flex-wrap:wrap-reverse;
   }
 
-  .goods-item {
-    display: block;
-    width: 220px;
-    margin-right: 20px;
-    padding: 20px 30px;
-    text-align: center;
+//   .goods-item {
+//     display: block;
+//     width: 220px;
+//     margin-right: 20px;
+//     padding: 20px 30px;
+//     text-align: center;
 
-    img {
-      width: 160px;
-      height: 160px;
-    }
+//     img {
+//       width: 160px;
+//       height: 160px;
+//     }
 
-    p {
-      padding-top: 10px;
-    }
+//     p {
+//       padding-top: 10px;
+//     }
 
-    .name {
-      font-size: 16px;
-    }
+//     .name {
+//       font-size: 16px;
+//     }
 
-    .desc {
-      color: #999;
-      height: 29px;
-    }
+//     .desc {
+//       color: #999;
+//       height: 29px;
+//     }
 
-    .price {
-      color: $priceColor;
-      font-size: 20px;
-    }
-  }
+//     .price {
+//       color: $priceColor;
+//       font-size: 20px;
+//     }
+//   }
 
-  .pagination-container {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-  }
+//   .pagination-container {
+//     margin-top: 20px;
+//     display: flex;
+//     justify-content: center;
+//   }
 
 
 }
