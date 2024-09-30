@@ -89,9 +89,9 @@ const load = async () => {
 
   .body {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; 
     padding: 0 40px 30px;
-    flex-wrap:wrap-reverse;
+    flex-wrap:wrap; //nowrap（默认）：不换行; wrap：换行，第一行在上方; wrap-reverse：换行，第一行在下方。
   }
 
 //   .goods-item {
