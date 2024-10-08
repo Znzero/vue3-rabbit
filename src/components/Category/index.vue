@@ -42,6 +42,7 @@
   </div>
   <div class="body">
     <GoodsItem v-for="good in item.goods" :goods="good" :key="good.id" />
+    <!-- 可以插入details导航 -->
   </div>
 </div>
   </div>
