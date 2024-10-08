@@ -3,7 +3,6 @@ import { getDetail } from '@/api/detail'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import DetailHot from './DetailHot.vue'
-import ImageView from '../Common/ImageView.vue'
 const goods = ref({})
 const route = useRoute()
 const getGoods = async () => {

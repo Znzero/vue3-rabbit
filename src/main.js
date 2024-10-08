@@ -9,6 +9,8 @@ import router from './router'
 // 引入初始化样式文件
 import '@/styles/common.scss'
 import { lazyPlugin } from '@/directives'
+// 引入全局组件插件
+import { componentPlugin } from '@/components/Common'
 
 //测试接口函数
 // import{getCategoryAPI}from'@/api/testAPI'
@@ -20,5 +22,6 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(lazyPlugin)
+app.use(componentPlugin)
 
 app.mount('#app')
