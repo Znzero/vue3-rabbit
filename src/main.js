@@ -11,6 +11,7 @@ import '@/styles/common.scss'
 import { lazyPlugin } from '@/directives'
 // 引入全局组件插件
 import { componentPlugin } from '@/components/Common'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
 //测试接口函数
 // import{getCategoryAPI}from'@/api/testAPI'
@@ -18,8 +19,9 @@ import { componentPlugin } from '@/components/Common'
 // console.log(res)
 // })
 const app = createApp(App)
-
-app.use(createPinia())
+const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia)
 app.use(router)
 app.use(lazyPlugin)
 app.use(componentPlugin)
