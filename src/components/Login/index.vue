@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import 'element-plus/theme-chalk/el-message.css'
-import { loginAPI } from '@/api/user'
+import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router';
 // 表单数据对象
 const userInfo = ref({
@@ -31,6 +31,7 @@ const rules = {
 //3.获取form实例做统一校验
 const formRef = ref(null)
 const router = useRouter()
+const UserStore = useUserStore()
 const doLogin = () => {
   const { account, password } = userInfo.value
   // 调用实例方法
@@ -40,7 +41,7 @@ const doLogin = () => {
     // 以valid做为判断条件 如果通过校验才执行登录逻辑
     if (valid) {
       // TODO LOGIN
-      await loginAPI({ account, password })
+      await UserStore.getUserInfo({ account, password })
       // 1. 提示用户
       ElMessage({ type: 'success', message: '登录成功' })
       // 2. 跳转首页
